@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>realme 10 Pro+ (Hyperspace Gold, 128 GB) - Details</title>
+    <style>body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; } .container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); padding: 32px; } .back-link { text-decoration: none; color: #ffcc00; font-weight: bold; margin-bottom: 20px; display: inline-block; } .product-detail { display: flex; gap: 32px; align-items: flex-start; } .product-img { width: 320px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); } .info { flex: 1; } .title { font-size: 2rem; font-weight: bold; margin-bottom: 10px; } .price { font-size: 1.5rem; color: #222; margin-bottom: 8px; } .old-price { color: #888; text-decoration: line-through; margin-left: 10px; font-size: 1rem; } .offer { color: green; font-weight: bold; margin-bottom: 10px; display: block; } .desc { margin: 18px 0; color: #444; } .add-cart-btn { background: #ffcc00; color: #222; border: none; padding: 12px 32px; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; } .add-cart-btn:hover { background: #f1b800; } .cart-badge { background: red; color: #fff; border-radius: 50%; padding: 4px 10px; font-size: 1rem; margin-left: 10px; } </style>
+</head>
+<body>
+    <div class="container">
+        <a href="smatphone.html" class="back-link">&larr; Back to Smartphones</a>
+        <div class="product-detail">
+            <img class="product-img" src="https://fdn2.gsmarena.com/vv/pics/realme/realme-10-pro-plus-1.jpg" alt="realme 10 Pro+">
+            <div class="info">
+                <div class="title">realme 10 Pro+ (Hyperspace Gold, 128 GB)</div>
+                <div class="price">₹ 25,999 <span class="old-price">₹ 29,999</span></div>
+                <span class="offer">13% off, Save ₹ 4,000</span>
+                <div class="desc">
+                    <ul>
+                        <li>6.7-inch Curved AMOLED Display</li>
+                        <li>MediaTek Dimensity 1080 Processor</li>
+                        <li>128 GB Storage, 8 GB RAM</li>
+                        <li>108MP Triple Camera | 16MP Front Camera</li>
+                        <li>5000 mAh Battery</li>
+                        <li>120Hz Refresh Rate</li>
+                    </ul>
+                </div>
+                <button class="add-cart-btn" onclick="addToCart()">Add to Cart</button>
+                <span id="cart-badge" class="cart-badge" style="display:none"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateCartBadge() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let count = cart.reduce((sum, item) => sum + item.qty, 0);
+            let badge = document.getElementById('cart-badge');
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = 'inline-block';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+        function addToCart() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let pid = 'realme-10proplus-128gb';
+            let found = cart.find(item => item.id === pid);
+            if (found) {
+                found.qty += 1;
+            } else {
+                cart.push({
+                    id: pid,
+                    name: 'realme 10 Pro+ (Hyperspace Gold, 128 GB)',
+                    price: 25999,
+                    img: 'https://fdn2.gsmarena.com/vv/pics/realme/realme-10-pro-plus-1.jpg',
+                    qty: 1
+                });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+            alert('Added to cart!');
+        }
+        updateCartBadge();
+    </script>
+</body>
+</html>

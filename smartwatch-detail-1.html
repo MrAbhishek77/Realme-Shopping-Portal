@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>realme Watch S Pro (Black) - Details</title>
+    <style>body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; } .container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); padding: 32px; } .back-link { text-decoration: none; color: #ffcc00; font-weight: bold; margin-bottom: 20px; display: inline-block; } .product-detail { display: flex; gap: 32px; align-items: flex-start; } .product-img { width: 320px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); } .info { flex: 1; } .title { font-size: 2rem; font-weight: bold; margin-bottom: 10px; } .price { font-size: 1.5rem; color: #222; margin-bottom: 8px; } .old-price { color: #888; text-decoration: line-through; margin-left: 10px; font-size: 1rem; } .offer { color: green; font-weight: bold; margin-bottom: 10px; display: block; } .desc { margin: 18px 0; color: #444; } .add-cart-btn { background: #ffcc00; color: #222; border: none; padding: 12px 32px; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; } .add-cart-btn:hover { background: #f1b800; } .cart-badge { background: red; color: #fff; border-radius: 50%; padding: 4px 10px; font-size: 1rem; margin-left: 10px; } </style>
+</head>
+<body>
+    <div class="container">
+        <a href="smartwatch.html" class="back-link">&larr; Back to Smartwatches</a>
+        <div class="product-detail">
+            <img class="product-img" src="https://m.media-amazon.com/images/I/71A5cqZexRL._UF1000,1000_QL80_.jpg" alt="realme Watch S Pro">
+            <div class="info">
+                <div class="title">realme Watch S Pro (Black)</div>
+                <div class="price">₹ 9,999 <span class="old-price">₹ 12,999</span></div>
+                <span class="offer">23% off, Save ₹ 3,000</span>
+                <div class="desc">
+                    <ul>
+                        <li>1.39" AMOLED Touchscreen</li>
+                        <li>14-Day Battery Life</li>
+                        <li>5ATM Water Resistance</li>
+                        <li>15 Sports Modes</li>
+                        <li>SpO2 & Heart Rate Monitoring</li>
+                    </ul>
+                </div>
+                <button class="add-cart-btn" onclick="addToCart()">Add to Cart</button>
+                <span id="cart-badge" class="cart-badge" style="display:none"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateCartBadge() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let count = cart.reduce((sum, item) => sum + item.qty, 0);
+            let badge = document.getElementById('cart-badge');
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = 'inline-block';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+        function addToCart() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let pid = 'realme-watch-spro';
+            let found = cart.find(item => item.id === pid);
+            if (found) {
+                found.qty += 1;
+            } else {
+                cart.push({
+                    id: pid,
+                    name: 'realme Watch S Pro (Black)',
+                    price: 9999,
+                    img: 'https://m.media-amazon.com/images/I/71A5cqZexRL._UF1000,1000_QL80_.jpg',
+                    qty: 1
+                });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+            alert('Added to cart!');
+        }
+        updateCartBadge();
+    </script>
+</body>
+</html>
